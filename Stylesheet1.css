@@ -1,0 +1,1950 @@
+/* ==========================================================================
+   TABLE OF CONTENTS
+   --------------------------------------------------------------------------
+   01. ROOT VARIABLES & THEME
+   02. GLOBAL
+   03. SECTIONS
+       3.1  Box 1 - Hero (#home)
+       3.2  Box 2 - About (#about)
+       3.3  Box 3 - Gallery (#galleria)
+       3.4  Box 4 - Projects (#projects)
+       3.5  Box 5 - Musics (#musics)
+       3.6  Box 6 - Socials (#socials)
+   04. THEME IMAGE
+   05. APPEARANCE CONTROLS
+   06. NAVIGATION (navbar, indicator, tooltip)
+   07. AUDIO TOGGLE
+   08. BACKGROUND SLIDER
+   09. GAME / PROJECT CARDS
+   10. FOOTER
+   11. KEYFRAMES
+   12. RESPONSIVE ADDITIONS (new - added at the end so the original
+       desktop rules above stay untouched)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   01. ROOT VARIABLES & THEME
+   ========================================================================== */
+
+:root {
+    color-scheme: dark;
+    font-family: "Xmind", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+
+    /* DARK THEME */
+    --bg-color: rgb(10, 10, 10);
+    --text-color: rgb(255, 255, 255);
+    --surface-color: rgb(32, 32, 32);
+    --border-color: rgb(59, 59, 59);
+    --accent-color: rgb(164, 156, 255);
+
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+    /* DOCK GLASS */
+    --dock-glass-bg: rgba(25, 25, 30, 0.55);
+    --dock-border: rgba(255, 255, 255, 0.15);
+    --dock-text: #ffffff;
+    --dock-shadow: rgba(0, 0, 0, 0.3);
+}
+
+
+/* ==========================================================================
+   02. GLOBAL
+   ========================================================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+section {
+    padding: 1.5rem;
+    scroll-margin-top: 100px;
+}
+
+
+/* ==========================================================================
+   03. SECTIONS
+   ========================================================================== */
+
+/* =========================
+   BOX 1 - HERO SECTION
+========================= */
+
+#home {
+    position: relative;
+    isolation: isolate;
+
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    min-height: 100vh;
+
+    border-radius: 12px 12px 0 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    overflow: hidden;
+    padding: 2rem;
+
+    background-color: var(--bg-color);
+}
+
+/* =========================
+   BACKGROUND VIDEO
+========================= */
+
+#home .background-video {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* =========================
+   VIDEO OVERLAY
+========================= */
+
+#home::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.60);
+
+    z-index: -1;
+    pointer-events: none;
+
+    transition: background 0.3s ease;
+}
+
+/* =========================
+   TEXT CONTENT
+========================= */
+
+#home > :not(.background-video) {
+    position: relative;
+    z-index: 1;
+}
+
+#home .title {
+    background: linear-gradient(303deg, #1c3eff, #df006a, #eeea41, #39ff74, #ff9c2b, #ce2cff, #ffffff);
+    background-size: 1600% 1600%;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: title 10s ease infinite;
+    -moz-animation: title 10s ease infinite;
+    -o-animation: title 10s ease infinite;
+    animation: title 10s ease infinite;
+}
+
+#home h3 {
+    margin: 0 0 15px;
+}
+
+#home p {
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* =========================
+   BOX 4 - PROJECTS SECTION
+========================= */
+
+#about {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+/* Background */
+
+.about-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.about-bg-image {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: url("resources/images/bg7.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.about-bg-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgba(67, 0, 67, 0.67);
+}
+
+/* Main Container */
+
+.about-container {
+    position: relative;
+    z-index: 2;
+
+    width: 90%;
+    max-width: 1120px;
+    min-height: 480px;
+
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    align-items: start;
+
+    gap: 50px;
+    padding: 50px;
+
+    background: rgba(0,0,0, 0.35);
+
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 25px;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-sizing: border-box;
+}
+
+/* Profile */
+
+.about-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+    padding-top: 4px;
+}
+
+.about-profile img {
+    width: 195px;
+    height: 195px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+
+    margin-bottom: 20px;
+}
+
+.about-profile h2 {
+    color: white;
+    font-size: 28px;
+    margin: 0 0 5px;
+}
+
+.about-profile p {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Introduction */
+
+.about-content {
+    color: white;
+}
+
+.about-content h1 {
+    font-size: clamp(32px, 4vw, 42px);
+    font-weight: 700;
+
+    margin: 0 0 8px;
+}
+
+.about-content p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgb(222, 222, 222);
+    margin: 0;
+}
+
+.about-content b {
+    font-size: 18px;
+    line-height: 29px;
+    color: rgb(255, 255, 255);
+}
+
+
+/* =========================
+   BOX 3 - GALLERY SECTION
+========================= */
+
+/* Galleria Section */
+
+#galleria {
+    position: relative;
+
+    width: 100%;
+    min-height: 100vh;
+
+    margin: 0;
+    padding: 0;
+
+    overflow: visible;
+}
+
+/* =========================
+   TEXT CONTENT
+========================= */
+
+#galleria .title {
+    margin: 0 0 15px;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+#galleria h3 {
+    margin: 0 0 15px;
+}
+
+#galleria p {
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+#galleria .img {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    z-index: -2;
+    pointer-events: none;
+}
+
+
+/* =========================
+   BOX 4 - PROJECTS SECTION
+========================= */
+
+#projects {
+    position: relative;
+    isolation: isolate;
+
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+    overflow: hidden;
+    padding: 2rem;
+
+    background-color: rgb(0, 0, 0);
+}
+
+.projects-background {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    min-height: 100%;
+
+    z-index: -1;
+
+    overflow: hidden;
+
+    background: #101010;
+}
+
+.projects-bg-image {
+    position: absolute;
+
+    inset: 0;
+
+    background-image: url("resources/images/bg4.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.projects-bg-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.35),
+        rgba(0, 0, 0, 0.75)
+    );
+}
+
+#projects .game-scroll {
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================
+   TEXT CONTENT
+========================= */
+
+#projects .title {
+    margin: 0 0 15px;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+#projects h3 {
+    margin: 0 0 15px;
+}
+
+#projects p {
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+#projects .img {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    z-index: -2;
+    pointer-events: none;
+}
+
+
+/* =========================
+   BOX 4 - MUSICS SECTION
+========================= */
+
+#musics {
+    position: relative;
+    isolation: isolate;
+
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+    overflow: hidden;
+    padding: 2rem;
+    z-index: 0;
+    background-color: rgb(0, 0, 0);
+}
+
+.musics-bg-overlay {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.35),
+        rgba(0, 0, 0, 0.75)
+    );
+}
+
+.musics-bg-image {
+    position: absolute;
+
+    inset: 0;
+
+    background-image: url("resources/images/bg5.jpeg");
+    z-index: -2;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* =========================
+   TEXT CONTENT
+========================= */
+
+#musics .title {
+    margin: 0 0 15px;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+#musics h3 {
+    margin: 0 0 15px;
+}
+
+#musics p {
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+#musics .img {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    z-index: -2;
+    pointer-events: none;
+}
+
+
+/* =========================
+   BOX 4 - SOCIALS SECTION
+========================= */
+
+#socials {
+    position: relative;
+    isolation: isolate;
+
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    min-height: 100vh;
+
+    border-radius: 0 0 12px 12px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    overflow: hidden;
+    padding: 2rem;
+
+    background-color: rgb(0, 0, 0);
+}
+
+#socials .background-video {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* =========================
+   VIDEO OVERLAY
+========================= */
+
+#socials::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.60);
+
+    z-index: -1;
+    pointer-events: none;
+
+    transition: background 0.3s ease;
+}
+
+#socials > :not(.background-video) {
+    position: relative;
+    z-index: 1;
+}
+
+.socials-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 35px;
+    margin-top: 37px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 60px;
+    height: 60px;
+
+    transition: transform 0.3s ease;
+}
+
+.social-link img {
+    width: 40px;
+    height: 40px;
+
+    object-fit: contain;
+
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
+}
+
+.social-link:hover img {
+    transform: translateY(-10px) scale(1.15);
+    filter: brightness(0) saturate(100%)
+            invert(27%) sepia(98%) saturate(3500%)
+            hue-rotate(213deg) brightness(101%)
+            contrast(104%);
+}
+
+/* =========================
+   TEXT CONTENT
+========================= */
+
+#socials .title {
+    margin: 0 0 15px;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+#socials h3 {
+    margin: 0 0 15px;
+}
+
+#socials p {
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+#socials .img {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    z-index: -2;
+    pointer-events: none;
+}
+
+
+/* ==========================================================================
+   04. THEME IMAGE
+   ========================================================================== */
+
+.theme-image {
+    content: url("resources/images/MultimediaLight.png");
+
+    width: 180px;
+    height: auto;
+
+    object-fit: contain;
+}
+
+
+/* ==========================================================================
+   05. APPEARANCE CONTROLS
+   ========================================================================== */
+
+.containerbrc {
+    position: fixed;
+
+    bottom: 110px;
+    right: 25px;
+
+    z-index: 1001;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.containerbrc button {
+    padding: 12px 18px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+
+    background: var(--surface-color);
+    color: var(--text-color);
+
+    font-family: "Xmind", sans-serif;
+    cursor: pointer;
+}
+
+.containerbrc button:hover {
+    border-color: var(--accent-color);
+}
+
+
+/* ==========================================================================
+   06. NAVIGATION
+   ========================================================================== */
+
+/* Navigation Bar */
+.navbar {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+
+    width: max-content;
+    max-width: 95%;
+
+    padding: 5px;
+
+    background-color: #070707bd;
+    border-radius: 32px;
+    border: 1px solid rgb(14, 90, 255);
+
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+
+    overflow: hidden;
+    z-index: 1000;
+}
+
+/* Navigation Icons */
+.navbar .nav-btn img {
+    width: 22px;
+    height: 22px;
+
+    object-fit: contain;
+
+    display: block;
+
+    transition: filter 0.3s ease;
+}
+
+/* Hover Icon */
+.navbar .nav-btn img:hover {
+    filter: brightness(0) saturate(100%)
+            invert(27%) sepia(98%) saturate(3500%)
+            hue-rotate(213deg) brightness(101%)
+            contrast(104%);
+}
+
+/* Active Icon */
+.navbar .nav-btn.active img {
+    filter: brightness(0) invert(1);
+}
+
+/* Hover Animation */
+.navbar .nav-btn:hover img {
+    transform: scale(1.1);
+}
+
+/* Navigation Buttons */
+.navbar .nav-btn {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 1 1 0;
+    min-width: 0;
+
+    padding: 12px 16px;
+
+    box-sizing: border-box;
+
+    color: #f2f2f2;
+    text-decoration: none;
+    text-align: center;
+
+    font-size: 15px;
+    font-weight: normal;
+
+    border-radius: 24px;
+    white-space: nowrap;
+
+    z-index: 2;
+
+    transition: color 0.3s ease;
+}
+
+/* Hover */
+.navbar .nav-btn:hover {
+    color: #0E5AFF;
+}
+
+/* Active */
+.navbar .nav-btn.active {
+    color: white;
+    font-weight: bold;
+}
+
+/* Sliding Indicator */
+.navbar .nav-indicator {
+    position: absolute;
+
+    left: 0;
+    top: 5px;
+    bottom: 5px;
+
+    width: 0;
+
+    background-color: rgb(14, 90, 255);
+    border-radius: 24px;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    transition:
+        left 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =========================
+   Tooltip
+========================= */
+
+.nav-tooltip {
+    position: fixed;
+
+    bottom: 90px;
+    left: 0;
+
+    transform: translate(-50%, 8px);
+
+    padding: 9px 16px;
+
+    background-color: #070707bd;
+    border-radius: 32px;
+    border: 1px solid rgb(14, 90, 255);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    border-radius: 12px;
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    z-index: 99999;
+
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.nav-tooltip.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+}
+
+
+/* ==========================================================================
+   07. AUDIO TOGGLE
+   ========================================================================== */
+
+.audio-toggle {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #070707bd;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border: 1px solid rgb(14, 90, 255);
+    border-radius: 50%;
+
+    color: white;
+    font-size: 17px;
+
+    cursor: pointer;
+    z-index: 9999;
+
+    transition: all 0.3s ease;
+}
+
+.audio-toggle img {
+    width: 22px;
+    height: 22px;
+
+    object-fit: contain;
+
+    display: block;
+
+    transition: filter 0.3s ease;
+}
+
+.audio-toggle:hover img {
+    filter: brightness(0) saturate(100%)
+            invert(27%) sepia(98%) saturate(3500%)
+            hue-rotate(213deg) brightness(101%)
+            contrast(104%);
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+.audio-toggle:active {
+    transform: scale(0.95);
+}
+
+
+/* ==========================================================================
+   08. BACKGROUND SLIDER
+   ========================================================================== */
+
+.background-slider {
+    position: relative;
+
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background: #101010;
+
+    isolation: isolate;
+}
+
+/* Background Container */
+
+.background-slides {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: -2;
+}
+
+/* Individual Background */
+
+.background-slide {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    opacity: 0;
+
+    transform: scale(1.05);
+
+    transition:
+        opacity 1s ease,
+        transform 6s ease;
+
+    pointer-events: none;
+}
+
+/* Active Background */
+
+.background-slide.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Overlay */
+
+.background-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -1;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.25),
+            rgba(0, 0, 0, 0.65)
+        );
+
+    pointer-events: none;
+}
+
+/* Content */
+
+/* NOTE: duplicate of the rule above, preserved from the original code */
+.background-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -1;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.25),
+            rgba(0, 0, 0, 0.65)
+        );
+
+    pointer-events: none;
+}
+
+.background-content {
+    position: absolute;
+    inset: 0;
+
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: white;
+
+    pointer-events: none;
+}
+
+.background-content h1 {
+    display: block;
+
+    width: 100%;
+    max-width: 900px;
+
+    margin: 0 0 15px;
+
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+
+    line-height: 1.15;
+
+    text-align: center;
+}
+
+.background-content p {
+    display: block;
+
+    width: 100%;
+    max-width: 650px;
+
+    margin: 0;
+
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+
+    line-height: 1.6;
+
+    text-align: center;
+
+    opacity: 0.85;
+}
+
+/* Controls */
+
+.background-controls {
+    position: absolute;
+
+    left: 50%;
+    bottom: 65px;
+
+    transform: translateX(-50%);
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+}
+
+.background-controls button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+
+    padding: 10px;
+
+    background-color: #070707bd;
+    border-radius: 32px;
+    border: 1px solid rgb(14, 90, 255);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.background-controls button img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    pointer-events: none;
+}
+
+#backgroundPrev img,
+#backgroundPause img,
+#backgroundNext img {
+    transition: all 0.3s ease;
+}
+
+/* Previous Hover */
+#backgroundPrev:hover img {
+    filter: brightness(0) saturate(100%)
+            invert(27%) sepia(98%) saturate(3500%)
+            hue-rotate(213deg) brightness(101%)
+            contrast(104%);
+
+    transform: scale(1.1);
+}
+
+/* Play / Pause Hover */
+#backgroundPause:hover img {
+    filter: brightness(0) saturate(100%)
+            invert(27%) sepia(98%) saturate(3500%)
+            hue-rotate(213deg) brightness(101%)
+            contrast(104%);
+
+    transform: scale(1.1);
+}
+
+/* Next Hover */
+#backgroundNext:hover img {
+    filter: brightness(0) saturate(100%)
+            invert(27%) sepia(98%) saturate(3500%)
+            hue-rotate(213deg) brightness(101%)
+            contrast(104%);
+
+    transform: scale(1.1);
+}
+
+/* Active */
+
+.background-controls button:active {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Keyboard Focus */
+
+.background-controls button:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 3px;
+}
+
+/* Indicators */
+
+.background-indicators {
+    position: absolute;
+
+    left: 50%;
+    bottom: 35px;
+
+    transform: translateX(-50%);
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+}
+
+.background-indicators button {
+    width: 8px;
+    height: 8px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.4);
+
+    cursor: pointer;
+
+    transition:
+        width 0.3s ease,
+        background 0.3s ease;
+}
+
+.background-indicators button.active {
+    width: 25px;
+    background: white;
+}
+
+
+/* ==========================================================================
+   09. GAME / PROJECT CARDS
+   ========================================================================== */
+
+/* Horizontal scroller */
+
+.game-scroll {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 20px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+
+    scrollbar-width: none;
+
+    padding: 30px 20px;
+}
+
+.game-scroll::before,
+.game-scroll::after {
+    content: "";
+    flex: 1 0 0;
+}
+
+/* Chrome, Edge, Safari */
+.game-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.game-scroll::-webkit-scrollbar-track {
+    background: var(--void-2);
+    border-radius: 10px;
+}
+
+.game-scroll::-webkit-scrollbar-thumb {
+    background: var(--signal);
+    border-radius: 10px;
+}
+
+.game-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--ember);
+}
+
+/* Game card */
+
+.game-card {
+    flex: 0 0 300px;
+    width: 300px;
+    min-width: 300px;
+    scroll-snap-align: start;
+
+    background: linear-gradient(180deg, var(--void-2), #060707);
+    border: 2px solid var(--line);
+    border-radius: 15px;
+
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    scroll-snap-align: start;
+
+    position: relative;
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    outline: 2px solid #000;
+
+    transition:
+        transform 0.35s var(--ease),
+        border-color 0.35s var(--ease),
+        outline 0.35s var(--ease);
+}
+
+.game-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--signal), var(--ember));
+    opacity: 0;
+    outline: 2px solid #000;
+    transition: opacity 0.35s var(--ease);
+}
+
+.game-card:hover {
+    transform: translateY(-8px);
+    outline: 2px solid #ffffff;
+    border-color: var(--line-strong);
+}
+
+.game-card:hover::before {
+    opacity: 1;
+}
+
+.game-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Project card */
+
+.project-card {
+    background: linear-gradient(180deg, var(--void-2), #060707);
+    border: 1px solid var(--line);
+    border-radius: 15px;
+    width: 700px;
+    min-width: 300px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
+}
+
+.project-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--signal), var(--ember));
+    opacity: 0;
+    transition: opacity 0.35s var(--ease);
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 30px rgba(43, 255, 136, 0.08);
+    border-color: var(--line-strong);
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+.project-header {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 12px 12px 0 0;
+}
+
+.game-thumbnail {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.4s ease;
+}
+
+.project-header h3 {
+    margin: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.project-header p {
+    margin: 10px 0 0;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+.project-footer {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.play-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    border: 2px solid #2bff59;
+    color: #00f36d;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin: 5px;
+}
+
+.play-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 35%;
+    height: 100%;
+    background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    transform: translateX(-140%) skewX(-15deg);
+    transition: transform 0.6s var(--ease);
+    pointer-events: none;
+}
+
+.play-btn:hover {
+    border: 2px solid #000000;
+    background: #fff;
+    color: #000;
+}
+
+.play-btn:hover::before {
+    transform: translateX(240%) skewX(-15deg);
+}
+
+.play-btn:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 3px;
+}
+
+.play-btn::after {
+    content: "→";
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.play-btn:hover::after {
+    transform: translateX(5px);
+}
+
+.project-body {
+    flex: 1;
+}
+
+.project-body p {
+    color: #ddd;
+    padding: 1%;
+    font-size: 90%;
+}
+
+
+/* ==========================================================================
+   10. FOOTER
+   ========================================================================== */
+
+.footer-centered {
+    background-color: var(--footer-bg);
+    color: var(--footer-text-color);
+    padding: 2.5rem 1.5rem;
+    border-top: 1px solid var(--footer-border-color);
+    text-align: center;
+}
+
+.footer-container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.footer-copyright_1 {
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.footer-copyright_1 p {
+    color: #797979;
+}
+
+.note1 {
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+    border-radius: 12px;
+
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.note1 p {
+    position: relative;
+    z-index: 1;
+
+    filter: blur(1.25px);
+    opacity: 0.01;
+
+    pointer-events: none;
+}
+
+.note-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+.footer-centered_seal {
+    align-items: center;
+}
+
+.footer-centered_seal img {
+    width: 150px;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.footer-centered_seal h5 {
+    margin: 15px;
+    color: #333;
+}
+
+
+/* ==========================================================================
+   11. KEYFRAMES
+   ========================================================================== */
+
+@-webkit-keyframes title {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@-moz-keyframes title {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@-o-keyframes title {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes title {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+/* ==========================================================================
+   12. RESPONSIVE ADDITIONS
+   --------------------------------------------------------------------------
+   Everything below is NEW. It sits after all original rules so it overrides
+   them only inside the media queries (desktop > 1024px is untouched).
+   Breakpoints: 1024px (small laptop / tablet landscape),
+                768px  (tablet portrait),
+                480px  (phones),
+                360px  (very small phones).
+   ========================================================================== */
+
+/* -------------------------
+   Base safety nets (all sizes, no visual change on desktop)
+------------------------- */
+
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img,
+video {
+    max-width: 100%;
+}
+
+
+/* -------------------------
+   Tablet landscape / small laptop  (<= 1024px)
+------------------------- */
+
+@media (max-width: 1024px) {
+
+    /* Fix 100vh jumping when mobile browser toolbars show/hide */
+    @supports (height: 100dvh) {
+        #home,
+        #galleria,
+        #projects,
+        #musics,
+        #socials {
+            min-height: 100dvh;
+        }
+
+        .background-slider {
+            min-height: 100dvh;
+            height: 100dvh;
+        }
+    }
+
+    /* Project card should never be wider than its container */
+    .project-card {
+        width: 100%;
+        max-width: 700px;
+    }
+}
+
+
+/* -------------------------
+   Tablet portrait  (<= 768px)
+------------------------- */
+
+@media (max-width: 768px) {
+
+    /* Keep the fixed navbar from covering the end of each section */
+    #home,
+    #projects,
+    #musics,
+    #socials {
+        padding: 1.5rem 1rem 6.5rem;
+    }
+
+    section {
+        scroll-margin-top: 60px;
+    }
+
+    /* Text blocks */
+    #home p,
+    #galleria p,
+    #projects p,
+    #musics p,
+    #socials p {
+        max-width: 100%;
+        line-height: 1.6;
+    }
+
+    /* Musics: the iframe has width="40%" in the HTML, too narrow on tablets.
+       CSS overrides the HTML attribute. */
+    #musics iframe {
+        width: 85%;
+        max-width: 100%;
+    }
+
+    /* Theme image */
+    .theme-image {
+        width: min(180px, 60%);
+    }
+
+    /* Socials */
+    .socials-icons {
+        gap: 24px;
+        margin-top: 28px;
+    }
+
+    /* Navbar: tighter buttons so every item fits */
+    .navbar {
+        max-width: calc(100% - 24px);
+    }
+
+    .navbar .nav-btn {
+        padding: 12px 12px;
+        font-size: 14px;
+    }
+
+    /* Floating controls: lift above the navbar so nothing overlaps */
+    .audio-toggle {
+        bottom: 85px;
+        right: 15px;
+    }
+
+    .containerbrc {
+        bottom: 145px;
+        right: 15px;
+    }
+
+    .nav-tooltip {
+        bottom: 80px;
+    }
+
+    /* Background slider */
+    .background-content {
+        padding: 20px;
+    }
+
+    .background-controls {
+        bottom: 110px;
+    }
+
+    .background-indicators {
+        bottom: 85px;
+    }
+
+    /* Cards */
+    .game-scroll {
+        gap: 16px;
+        padding: 24px 16px;
+    }
+
+    .project-header {
+        height: 200px;
+    }
+
+    .project-footer {
+        padding: 16px;
+    }
+
+    /* Footer */
+    .footer-centered {
+        padding: 2rem 1rem 6rem;
+    }
+}
+
+
+/* -------------------------
+   Phones  (<= 480px)
+------------------------- */
+
+@media (max-width: 480px) {
+
+    #home,
+    #projects,
+    #musics,
+    #socials {
+        padding: 1.25rem 0.75rem 6.5rem;
+    }
+
+    /* Musics player: full width on phones */
+    #musics iframe {
+        width: 100%;
+    }
+
+    /* Navbar */
+    .navbar {
+        max-width: calc(100% - 16px);
+        padding: 4px;
+    }
+
+    .navbar .nav-btn {
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+
+    .navbar .nav-btn img {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Floating controls */
+    .audio-toggle {
+        width: 42px;
+        height: 42px;
+        bottom: 80px;
+        right: 12px;
+    }
+
+    .audio-toggle img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .containerbrc {
+        bottom: 132px;
+        right: 12px;
+    }
+
+    .containerbrc button {
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+
+    /* Background slider controls */
+    .background-controls {
+        bottom: 100px;
+        gap: 10px;
+    }
+
+    .background-controls button {
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+    }
+
+    .background-indicators {
+        bottom: 78px;
+    }
+
+    /* Socials */
+    .socials-icons {
+        gap: 16px;
+        margin-top: 24px;
+    }
+
+    .social-link {
+        width: 52px;
+        height: 52px;
+    }
+
+    .social-link img {
+        width: 36px;
+        height: 36px;
+    }
+
+    /* Cards */
+    .game-scroll {
+        gap: 12px;
+        padding: 20px 12px;
+    }
+
+    .game-card {
+        flex: 0 0 260px;
+        width: 260px;
+        min-width: 260px;
+    }
+
+    .project-card {
+        min-width: 0;
+    }
+
+    .project-header {
+        height: 170px;
+    }
+
+    .project-header h3 {
+        font-size: 14px;
+    }
+
+    .play-btn {
+        padding: 9px 16px;
+        font-size: 14px;
+    }
+
+    /* Footer */
+    .footer-centered_seal img {
+        width: 120px;
+        max-width: 100%;
+    }
+}
+
+
+/* -------------------------
+   Very small phones  (<= 360px)
+------------------------- */
+
+@media (max-width: 360px) {
+
+    .navbar .nav-btn {
+        padding: 10px 6px;
+        font-size: 11px;
+    }
+
+    .game-card {
+        flex: 0 0 230px;
+        width: 230px;
+        min-width: 230px;
+    }
+
+    .socials-icons {
+        gap: 12px;
+    }
+}
+
+
+/* -------------------------
+   Short landscape screens (phones turned sideways)
+------------------------- */
+
+@media (max-height: 500px) and (orientation: landscape) {
+
+    .background-content h1 {
+        font-size: clamp(1.5rem, 4vw, 2.2rem);
+        margin-bottom: 8px;
+    }
+
+    .background-controls {
+        bottom: 80px;
+    }
+
+    .background-indicators {
+        bottom: 58px;
+    }
+
+    .containerbrc {
+        bottom: 80px;
+    }
+
+    .audio-toggle {
+        bottom: 20px;
+    }
+}
